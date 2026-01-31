@@ -1,118 +1,96 @@
 <br/>
 <p align="center">
-  <a href="https://github.com/davidperjac/react-wordle-clon">
-    <img src="resources/logo.jpeg" alt="Logo" width="250" height="250">
-  </a>
+  <img src="resources/logo.jpeg" alt="Logo" width="220" height="220">
 
-  <h3 align="center">Deepfake Detector</h3>
+  <h2 align="center">AI Image Authenticity Detector</h2>
 
   <p align="center">
-    A deepfake detector built using NextJS, FastAPI and Tensorflow
+    An AI-based system to detect real vs AI-generated images using image forensics.
     <br/>
     <br/>
-    <a href="https://deepfake-detector.vercel.app/">View Demo</a>
+    <b>Live Demo:</b> NOT DEPLOYED
   </p>
 </p>
 
-![Contributors](https://img.shields.io/github/contributors/davidperjac/react-wordle-clon?color=dark-green) ![Issues](https://img.shields.io/github/issues/davidperjac/react-wordle-clon) ![License](https://img.shields.io/github/license/davidperjac/react-wordle-clon)
+---
 
-## Table Of Contents
+## 📌 About The Project
 
-- [About the Project](#about-the-project)
-- [Built With](#built-with)
-- [Getting Started](#getting-started)
-  - [Installation](#installation)
-- [Usage](#usage)
-- [Authors](#authors)
+**AI Image Authenticity Detector** is a student-built system designed to analyze images and determine whether they are **real** or **AI-generated**.
 
-## About The Project
+Instead of relying on heavy deep learning models, this project focuses on **image forensics techniques** combined with **classical machine learning**, making it lightweight, explainable, and suitable for real-world deployment.
 
-Deepfake Detector is an AI course final project that consists of building a deep learning model that can detect deepfake photos by using AI techniques. The model was built using a Convolutional Neural Network (CNN) and trained using the [OpenForensics](https://zenodo.org/records/5528418#.YpdlS2hBzDd) dataset. The dataset contains aproximately 191,000 images. The training set contains 140,000, the validation set contains 40,000 and the test set contains 11,000 images. The images are divided into two classes: real and fake.
+The system is built to handle the growing problem of **AI-generated misinformation** and visually deceptive content.
 
-<p align="center">
-  <img src="resources/dataset.png" alt="Logo" height="250">
-</p>
+> ⚠️ This project was developed as a **student project for learning and demonstration purposes**.
 
-The model was built in Google Colab Pro with Tensorflow and Keras API. The trained model was saved as a .tf file and then used in a web service built with FastAPI. The web service was deployed to [Render](https://render.com/) and the client was built using NextJS and deployed to [Vercel](https://vercel.com/).
+---
 
-The model was trained using 20 epochs and achieved an accuracy of 0.91 and a loss of 0.2439 in the test set.
+## ✨ Key Features
 
-<p align="center">
-  <img src="resources/loss.png" alt="Logo" width="350" height="350">
-  <img src="resources/accuracy.png" alt="Logo" width="350" height="350">
-</p>
+- 🔍 **Image Forensics Analysis**
+  - Frequency-domain analysis using FFT
+  - Texture analysis using Wavelet Transform
+  - Pixel-level noise and artifact detection
 
-## Built With
+- 🧠 **Hybrid Decision System**
+  - Classical ML models (Logistic Regression & Random Forest)
+  - Statistical probability engine
+  - Final decision based on confidence-weighted fusion
 
-The technologies used for this project were:
+- 🔁 **Smart API Fallback**
+  - External Sightengine API is used **only when confidence is low**
+  - Reduces dependency on third-party services
 
-- [NextJS](https://nextjs.org/) for the client
-- [FastAPI](https://fastapi.tiangolo.com/) for the server
-- [Tensorflow](https://www.tensorflow.org/) for the model
+- 🌐 **Web-Based Interface**
+  - Clean and modern UI
+  - Image upload and instant prediction
+  - Clear confidence and prediction output
 
-## Getting Started
+---
 
-To use this application, simply clone the repository, move into the client and server directories, install the dependencies, and start the development server. Here are the steps:
+## 🛠️ Built With
 
-1. Clone the repo
+### Backend
+- **Python**
+- **FastAPI**
+- **Scikit-learn**
+- **NumPy / OpenCV**
+- **Custom Image Forensics Pipelines**
+- **Pre-trained `.pkl` models loaded at runtime**
 
-```sh
-git clone https://github.com/davidperjac/react-wordle-clon.git
-```
+### Frontend
+- **Next.js**
+- **TypeScript**
+- **Tailwind CSS**
+- **NextUI**
 
-### Client Installation
+### External Service
+- **Sightengine API** (fallback only for borderline cases)
 
-1. Move into the client directory
+---
 
-```sh
-cd client
-```
+## ⚙️ How It Works (High Level)
 
-2. Install NPM packages
+1. User uploads an image from the web interface  
+2. Backend extracts forensic features:
+   - Frequency patterns
+   - Texture inconsistencies
+   - Noise artifacts  
+3. Features are evaluated using trained ML models  
+4. Statistical probabilities are combined with ML output  
+5. If confidence is low → external API is consulted  
+6. Final prediction is returned with confidence score  
 
-```sh
-npm install
-```
+---
 
-3. Start the development server
+## 🚀 Getting Started (Local Setup)
 
-```sh
-npm run dev
-```
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/TanujDeshmukh09/ai-image-authenticity-detector.git
+cd ai-image-authenticity-detector
 
-4. Open your web browser and go to `http://localhost:3000`
-
-### Server Installation
-
-1. Move into the server directory
-
-```sh
-cd server
-```
-
-2. Create a virtual environment
-
-```sh
-python3 -m venv venv
-```
-
-3. Activate the virtual environment
-
-```sh
-source venv/bin/activate
-```
-
-4. Install the requirements
-
-```sh
-pip install -r requirements.txt
-```
-
-5. Start the development server
-
-```sh
-uvicorn main:app --reload
-```
 
 ## Usage
 
@@ -129,6 +107,4 @@ uvicorn main:app --reload
 
 Built with ❤️ by:
 
-- **David Perez** - [David Perez](https://github.com/davidperjac)
-- **Fernando Bucheli** - [Fernando Bucheli](https://github.com/ferbucheli)
-- **David Bravo** - [David Bravo](https://github.com/davalbra)
+- **Tanuj Deshmukh** - [Tanuj Deshmukh](https://github.com/TanujDeshmukh09)
