@@ -91,7 +91,7 @@ The system is built to handle the growing problem of **AI-generated misinformati
 git clone https://github.com/TanujDeshmukh09/ai-image-authenticity-detector.git
 cd ai-image-authenticity-detector
 
-
+---
 ```md
 
 ## Usage
