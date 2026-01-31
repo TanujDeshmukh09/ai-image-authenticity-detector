@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+numpy
+opencv-python
+scikit-learn
+joblib
+scipy
+pywavelets
+python-multipart
+pip install python-dotenv
