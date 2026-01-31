@@ -92,6 +92,8 @@ git clone https://github.com/TanujDeshmukh09/ai-image-authenticity-detector.git
 cd ai-image-authenticity-detector
 
 
+```md
+
 ## Usage
 
 - Landing Page
