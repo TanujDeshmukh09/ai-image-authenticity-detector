@@ -1,6 +1,6 @@
 <br/>
 <p align="center">
-  <img src="resources/logo.jpeg" alt="Logo" width="220" height="220">
+  <img src=""C:\Users\deshm\OneDrive\Desktop\deepfake-detector-main\resources\logo.jpeg"" alt="Logo" width="220" height="220">
 
   <h2 align="center">AI Image Authenticity Detector</h2>
 
