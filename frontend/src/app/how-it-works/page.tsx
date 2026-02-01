@@ -71,7 +71,7 @@ export default function HowItWorksPage() {
       </div>
 
       {/* DIAGRAM STYLE SECTION */}
-      <div className="max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+      <div className="max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-16 items-start mb-32">
 
         {/* LEFT TEXT */}
         <div>
@@ -92,13 +92,12 @@ export default function HowItWorksPage() {
 
         {/* RIGHT SIMPLE EXPLANATION */}
         <div className="rounded-2xl p-10 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 border border-zinc-800 shadow-2xl text-zinc-200">
-
           <div className="space-y-4 text-base">
             <p><b>1.</b> The input image is prepared for analysis.</p>
             <p><b>2.</b> Frequency patterns are analyzed to detect synthetic signals.</p>
             <p><b>3.</b> Texture consistency is examined using wavelet methods.</p>
             <p><b>4.</b> Noise residuals reveal pixel-level irregularities.</p>
-            <p><b>5.</b> All extracted information is fused into a single feature set.</p>
+            <p><b>5.</b> Extracted signals are fused into a single feature set.</p>
             <p><b>6.</b> A machine learning model evaluates authenticity.</p>
 
             <div className="pt-4 font-semibold">
@@ -107,9 +106,24 @@ export default function HowItWorksPage() {
               <span className="text-red-500">AI GENERATED</span>
             </div>
           </div>
-
         </div>
+      </div>
 
+      {/* ABOUT CREATOR (SMALL & CLEAN) */}
+      <div className="max-w-4xl mb-16 border-t border-zinc-800 pt-8">
+        <h3 className="text-2xl font-semibold mb-3 text-orange-400">
+          About the Creator
+        </h3>
+
+        <p className="text-zinc-300 leading-relaxed">
+          This project was built by <span className="text-white font-medium">Tanuj Deshmukh</span>,
+          a computer science student passionate about AI, image forensics, and
+          building real-world systems that address modern digital trust issues.
+        </p>
+
+        <p className="mt-2 text-zinc-400">
+          📧 Contact: <span className="text-white">deshmukhtanuj25@gmail.com</span>
+        </p>
       </div>
 
     </main>

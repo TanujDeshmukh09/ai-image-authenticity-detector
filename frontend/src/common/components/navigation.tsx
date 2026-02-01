@@ -23,15 +23,15 @@ export default function Navigation() {
   return (
     <Navbar shouldHideOnScroll>
       <NavbarBrand className="flex gap-3 items-center">
-  <img
-    src="/logo.png"
-    alt="AI Image Detector "
-    className="h-8 w-8 object-contain"
-  />
-  <p className="font-bold text-inherit">
-    AI Image Detector
-  </p>
-</NavbarBrand>
+        <img
+          src="/logo.png"
+          alt="AI Image Detector "
+          className="h-8 w-8 object-contain"
+        />
+        <p className="font-bold text-inherit">
+          AI Image Detector
+        </p>
+      </NavbarBrand>
 
       <NavbarContent
         className="flex gap-4"
@@ -51,10 +51,12 @@ export default function Navigation() {
           </NavbarItem>
         ))}
       </NavbarContent>
+
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
           <Link href="#">Login</Link>
         </NavbarItem>
+
         <NavbarItem>
           <Button
             isIconOnly
@@ -66,17 +68,20 @@ export default function Navigation() {
             ?
           </Button>
         </NavbarItem>
+
         <NavbarItem>
           <Button
             isIconOnly
             as={Link}
             color="warning"
             variant="ghost"
-            href="https://github.com/TanujDeshmukh09-ai/"
+            href="https://github.com/TanujDeshmukh09"
+            target="_blank"
           >
             <GithubIcon />
           </Button>
         </NavbarItem>
+
         <NavbarItem>
           <ThemeSwitcher />
         </NavbarItem>
