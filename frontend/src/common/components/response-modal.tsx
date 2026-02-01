@@ -14,7 +14,7 @@ import { Response } from '@/types/response';
 type ResponseModalProps = {
   isOpen: boolean;
   isLoading: boolean;
-  file: File | undefined;
+  file: File | undefined | null;
   onOpenChange: () => void;
   response: Response | undefined;
 };
