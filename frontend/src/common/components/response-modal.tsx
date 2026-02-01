@@ -69,11 +69,11 @@ export default function ResponseModal({
 
                     <p>
                       <strong>Confidence:</strong>{' '}
-                      <span className="font-semibold">
-                        {response
-                          ? `${(response.confidence * 100).toFixed(2)}%`
-                          : '—'}
-                      </span>
+  <span className="font-semibold">
+    {typeof response?.confidence === 'number'
+      ? `${response.confidence.toFixed(2)}%`
+      : '—'}
+  </span>
                     </p>
 
                     <p className="text-sm text-gray-500">
