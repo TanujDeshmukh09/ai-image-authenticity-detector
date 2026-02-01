@@ -27,9 +27,19 @@ scaler = joblib.load(SCALER_PATH)
 # -----------------------------
 # SYSTEM PARAMETERS
 # -----------------------------
-ALPHA = 0.6              # ML vs Statistical weight
-STRONG_LOW = 0.20        # Strong REAL
-STRONG_HIGH = 0.80       # Strong AI
+ALPHA = 0.6
+STRONG_LOW = 0.20
+STRONG_HIGH = 0.80
+
+
+# ✅ NEW: SAFE CONFIDENCE HELPER
+def to_confidence(prob):
+    """
+    Convert probability (0–1) → percentage (0–100)
+    with hard safety clamp
+    """
+    conf = prob * 100
+    return round(max(0, min(conf, 100)), 2)
 
 
 def analyze_image(image_path):
@@ -61,48 +71,43 @@ def analyze_image(image_path):
     p_final_ai = (ALPHA * p_ml_ai) + ((1 - ALPHA) * p_stat_ai)
 
     # -----------------------------
-    # 5. FINAL DECISION LOGIC (FIXED)
+    # 5. FINAL DECISION LOGIC
     # -----------------------------
-
-    # 🔥 CASE 1: VERY STRONG confidence
     if p_final_ai <= STRONG_LOW or p_final_ai >= STRONG_HIGH:
 
-        # BUT: if statistical model is uncertain → verify with API
         if 0.05 < p_stat_ai < 0.95:
             se_prob = sightengine_check(image_path)
 
             if se_prob is not None:
                 p_fused = (p_final_ai + se_prob) / 2
                 label = "AI GENERATED" if p_fused >= 0.5 else "REAL IMAGE"
-                confidence = p_fused * 100
+                confidence = to_confidence(max(p_fused, 1 - p_fused))
                 source = "Hybrid (ML + Sightengine)"
             else:
                 label = "AI GENERATED" if p_final_ai >= 0.5 else "REAL IMAGE"
-                confidence = max(p_final_ai, 1 - p_final_ai) * 100
+                confidence = to_confidence(max(p_final_ai, 1 - p_final_ai))
                 source = "Local ML (Fallback)"
-
         else:
             label = "AI GENERATED" if p_final_ai >= 0.5 else "REAL IMAGE"
-            confidence = max(p_final_ai, 1 - p_final_ai) * 100
+            confidence = to_confidence(max(p_final_ai, 1 - p_final_ai))
             source = "Local ML"
 
-    # 🔁 CASE 2: BORDERLINE confidence → API
     else:
         se_prob = sightengine_check(image_path)
 
         if se_prob is not None:
             p_fused = (p_final_ai + se_prob) / 2
             label = "AI GENERATED" if p_fused >= 0.5 else "REAL IMAGE"
-            confidence = p_fused * 100
+            confidence = to_confidence(max(p_fused, 1 - p_fused))
             source = "Hybrid (ML + Sightengine)"
         else:
             label = "AI GENERATED" if p_final_ai >= 0.5 else "REAL IMAGE"
-            confidence = max(p_final_ai, 1 - p_final_ai) * 100
+            confidence = to_confidence(max(p_final_ai, 1 - p_final_ai))
             source = "Local ML (Fallback)"
 
     return {
         "prediction": label,
-        "confidence": round(confidence, 2),
+        "confidence": confidence,
         "ml_probability": round(p_ml_ai, 4),
         "stat_probability": round(p_stat_ai, 4),
         "final_probability": round(p_final_ai, 4),
@@ -111,7 +116,7 @@ def analyze_image(image_path):
 
 
 # -----------------------------
-# CLI ENTRY (OPTIONAL)
+# CLI ENTRY
 # -----------------------------
 if __name__ == "__main__":
     if len(sys.argv) != 2:
