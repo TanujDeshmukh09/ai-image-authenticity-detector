@@ -70,14 +70,14 @@ export default function ResponseModal({
                     <p>
                       <strong>Confidence:</strong>{' '}
                       <span className="font-semibold">
-                        {response?.confidence
-                          ? `${response.confidence}%`
+                        {response
+                          ? `${(response.confidence * 100).toFixed(2)}%`
                           : '—'}
                       </span>
                     </p>
 
                     <p className="text-sm text-gray-500">
-                      <strong>Source:</strong>{' '}
+                      <strong>Decision Source:</strong>{' '}
                       {response?.decision_source ?? '—'}
                     </p>
                   </div>

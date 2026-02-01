@@ -10,14 +10,18 @@ export const getDetection = async (file: File): Promise<Response> => {
     throw new Error('Backend URL not defined');
   }
 
-  const response = await fetch(`${BASE_URL}/analyze`, {
+  const res = await fetch(`${BASE_URL}/analyze`, {
     method: 'POST',
     body: formData,
   });
 
-  if (!response.ok) {
+  if (!res.ok) {
     throw new Error('Detection request failed');
   }
 
-  return await response.json();
+  // ✅ DO NOT MAP / RENAME ANYTHING
+  // ✅ JUST RETURN BACKEND RESPONSE AS-IS
+  const data = await res.json();
+
+  return data as Response;
 };
